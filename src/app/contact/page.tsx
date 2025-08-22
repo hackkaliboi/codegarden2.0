@@ -1,8 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt, faClock, faCode } from '@fortawesome/free-solid-svg-icons';
 
 export default function Contact() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-900 relative overflow-hidden">
       {/* Tech Grid Background */}
@@ -56,7 +61,43 @@ export default function Contact() {
                 <span>Live Support</span>
               </div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <div className="space-y-1.5">
+                <div className="w-6 h-0.5 bg-gray-300 transition-all duration-200"></div>
+                <div className="w-6 h-0.5 bg-gray-300 transition-all duration-200"></div>
+                <div className="w-6 h-0.5 bg-gray-300 transition-all duration-200"></div>
+              </div>
+            </button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden py-6 border-t border-gray-700">
+              <div className="space-y-4">
+                <Link href="/" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">
+                  Home
+                </Link>
+                <Link href="/programs" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">
+                  Programs
+                </Link>
+                <Link href="/about" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">
+                  About
+                </Link>
+                <Link href="/contact" className="block text-cyan-400 font-medium py-2">
+                  Contact
+                </Link>
+                <div className="flex items-center space-x-2 text-sm text-gray-500 py-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span>Live Support</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 

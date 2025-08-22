@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faGlobe, faGamepad, faUsers, faAward, faShieldAlt, faBook, faLaptopCode, faRocket, faGraduationCap, faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -71,10 +71,10 @@ export default function Home() {
           {isMenuOpen && (
             <div className="md:hidden py-6 border-t border-gray-700">
               <div className="space-y-4">
-                <a href="#home" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">Home</a>
-                <a href="#programs" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">Programs</a>
-                <a href="#about" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">About</a>
-                <a href="#contact" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">Contact</a>
+                <Link href="/" className="block text-cyan-400 font-medium py-2 transition-colors">Home</Link>
+                <Link href="/programs" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">Programs</Link>
+                <Link href="/about" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">About</Link>
+                <Link href="/contact" className="block text-gray-300 hover:text-cyan-400 font-medium py-2 transition-colors">Contact</Link>
                 <button className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg font-medium mt-4 transition-colors">
                   Enroll Now
                 </button>

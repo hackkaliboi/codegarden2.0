@@ -1,51 +1,86 @@
+'use client';
+
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faBook, faBriefcase, faCertificate, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faBook, faBriefcase, faCertificate } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
 export default function Programs() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Navigation */}
-      <nav className="bg-gray-900/95 backdrop-blur-md border-b border-gray-700 sticky top-0 z-50 shadow-lg">
+      <nav className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-700 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-3 group">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-orange-500 rounded-lg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <FontAwesomeIcon icon={faCode} className="w-5 h-5 text-white" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-orange-500 rounded-xl flex items-center justify-center border border-blue-400/50">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
               </div>
-              <span className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent tracking-tight">Code Garden</span>
-              <div className="ml-2 px-2 py-1 bg-blue-100 text-blue-600 text-xs font-medium rounded-full">
-                v2.0
+              <span className="text-2xl font-bold text-white font-mono">Code Garden</span>
+              <div className="flex items-center space-x-2 ml-4">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-green-400 text-sm font-mono">Live Support</span>
               </div>
             </div>
             
-            {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="relative text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-200 group">
-                <span>Home</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></div>
+              <Link href="/" className="text-gray-300 hover:text-cyan-400 font-mono transition-colors relative group">
+                Home
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="/programs" className="relative text-cyan-400 font-medium transition-colors duration-200 group">
-                <span>Programs</span>
-                <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-cyan-400 transition-all duration-300"></div>
+              <Link href="/about" className="text-gray-300 hover:text-cyan-400 font-mono transition-colors relative group">
+                About
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="/about" className="relative text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-200 group">
-                <span>About</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></div>
+              <Link href="/programs" className="text-cyan-400 font-mono border-b border-cyan-400">Programs</Link>
+              <Link href="/contact" className="text-gray-300 hover:text-cyan-400 font-mono transition-colors relative group">
+                Contact
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
               </Link>
-              <Link href="/contact" className="relative text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-200 group">
-                <span>Contact</span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></div>
-              </Link>
-              <div className="flex items-center space-x-2 text-sm text-gray-500 mr-4">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span>Live Support</span>
+              <button className="bg-gray-800 text-cyan-400 px-6 py-3 rounded-xl hover:bg-gray-700 transition-colors font-mono border border-cyan-400/50">
+                Get Started
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <div className="space-y-1.5">
+                <div className="w-6 h-0.5 bg-gray-300 transition-all duration-200"></div>
+                <div className="w-6 h-0.5 bg-gray-300 transition-all duration-200"></div>
+                <div className="w-6 h-0.5 bg-gray-300 transition-all duration-200"></div>
+              </div>
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden py-6 border-t border-gray-700">
+              <div className="space-y-4">
+                <Link href="/" className="block text-gray-300 hover:text-cyan-400 font-mono py-2 transition-colors">
+                  Home
+                </Link>
+                <Link href="/about" className="block text-gray-300 hover:text-cyan-400 font-mono py-2 transition-colors">
+                  About
+                </Link>
+                <Link href="/programs" className="block text-cyan-400 font-mono py-2">
+                  Programs
+                </Link>
+                <Link href="/contact" className="block text-gray-300 hover:text-cyan-400 font-mono py-2 transition-colors">
+                  Contact
+                </Link>
+                <button className="w-full bg-gray-800 text-cyan-400 px-6 py-3 rounded-xl hover:bg-gray-700 transition-colors font-mono border border-cyan-400/50 mt-4">
+                  Get Started
+                </button>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </nav>
 
